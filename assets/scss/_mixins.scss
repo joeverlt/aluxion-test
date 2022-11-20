@@ -1,0 +1,92 @@
+@mixin breakpoint($device: false, $min: false, $max: false) {
+  @if type-of($device) == string {
+    @if $device == 'mobile' {
+      @media (min-width: 0px) and (max-width: 767px) {
+        @content;
+      }
+    } @else if $device == 'tablet' {
+      @media (min-width: 768px) and (max-width: 1279px) {
+        @content;
+      }
+    } @else if $device == 'touch' {
+      @media (min-width: 0px) and (max-width: 1279px) {
+        @content;
+      }
+    } @else if $device == 'desktop-sm' {
+      @media (min-width: 1280px) and (max-width: 1366px) {
+        @content;
+      }
+    } @else if $device == 'desktop-md' {
+      @media (min-width: 1367px) and (max-width: 1600px) {
+        @content;
+      }
+    } @else if $device == 'desktop-lg' {
+      @media (min-width: 1601px) {
+        @content;
+      }
+    } @else if $device == 'desktop' {
+      @media (min-width: 1280px) {
+        @content;
+      }
+    } @else {
+      @warn "Unsupports breakpoint mixin screen: mobile, tablet, desktop-sm, desktop-md, desktop-lg";
+    }
+  } @else if $min and not $max {
+    @if type-of($min) == string {
+      @if $min == 'tablet' {
+        @media (min-width: 767px) {
+          @content;
+        }
+      }
+      @if $min == 'desktop-sm' {
+        @media (min-width: 1280px) {
+          @content;
+        }
+      }
+      @if $min == 'desktop-md' {
+        @media (min-width: 1366px) {
+          @content;
+        }
+      }
+      @if $min == 'desktop-lg' {
+        @media (min-width: 1601px) {
+          @content;
+        }
+      }
+    } @else {
+      @media (min-width: $min) {
+        @content;
+      }
+    }
+  } @else if $max and not $min {
+    @if type-of($max) == string {
+      @if $max == 'mobile' {
+        @media (max-width: 767px) {
+          @content;
+        }
+      }
+      @if $max == 'tablet' {
+        @media (max-width: 1279px) {
+          @content;
+        }
+      }
+      @if $max == 'desktop-sm' {
+        @media (max-width: 1366px) {
+          @content;
+        }
+      }
+      @if $max == 'desktop-md' {
+        @media (max-width: 1600px) {
+          @content;
+        }
+      }
+    }
+    @media (max-width: $max) {
+      @content;
+    }
+  } @else if $min and $max {
+    @media (min-width: $min) and (max-width: $max) {
+      @content;
+    }
+  }
+}

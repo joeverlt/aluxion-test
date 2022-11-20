@@ -1,0 +1,1 @@
+export { default } from "file:///home/joeverlt/Projects/aluxion-test/node_modules/@nuxt/vite-builder/dist/runtime/client.manifest.mjs"

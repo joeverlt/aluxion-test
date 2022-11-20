@@ -1,0 +1,20 @@
+query search($query: String!, $last: Int!) {
+  search(type: REPOSITORY, query: $query, last: $last) {
+    edges {
+      repository: node {
+        ... on Repository {
+          name
+          description
+          url
+          homepageUrl
+          stargazerCount
+          owner {
+            id
+            avatarUrl
+            url
+          }
+        }
+      }
+    }
+  }
+}
