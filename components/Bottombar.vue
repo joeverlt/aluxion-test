@@ -1,7 +1,7 @@
 <template>
   <div class="bottom-bar w-full py-3 flex align-items-center">
     <h4 class="copy">
-      Copyright © 2012-2022, Joeverlt Test. Todos los derechos reservados.
+      Copyright © 2012-2022, Joeverlt Test. All right reserved.
     </h4>
   </div>
 </template>

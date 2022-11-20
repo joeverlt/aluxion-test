@@ -34,12 +34,12 @@
           for="stars"
           :class="{ 'p-error': v$.stars.$invalid && state.submitted }"
         >
-          stars *
+          Min of stars *
         </label>
       </div>
     </div>
     <div class="col-12 md:col-4 text-right mt-3">
-      <Button label="Buscar" type="submit" class="search-button" />
+      <Button label="Search" type="submit" class="search-button" />
     </div>
   </form>
 </template>
@@ -47,12 +47,13 @@
 <script setup>
 import { numeric, required } from '@vuelidate/validators'
 import { useVuelidate } from '@vuelidate/core'
+import { useToast } from 'primevue/usetoast'
 import query from '~~/queries/search.gql'
 
+const toast = useToast()
 const state = reactive({
   topic: '',
   stars: null,
-  loading: false,
   submitted: false
 })
 const rules = {
@@ -61,17 +62,30 @@ const rules = {
 }
 const v$ = useVuelidate(rules, state)
 const repositories = useRepositories()
+const blocked = useBlockUI()
 
 const handleSubmit = async (isValid) => {
   state.submitted = true
   if (!isValid) return
-  const variables = {
-    query: `topic:${state.topic} stars:>=${state.stars}`,
-    last: 10
+  try {
+    blocked.value = true
+    const variables = {
+      query: `topic:${state.topic} stars:>=${state.stars}`,
+      last: 10
+    }
+    const { data } = await useAsyncQuery(query, variables)
+    const { edges } = data.value.search
+    repositories.value = edges.map((item) => item.repository)
+    blocked.value = false
+  } catch (e) {
+    blocked.value = false
+    toast.add({
+      severity: 'danger',
+      summary: 'OMG!',
+      detail: 'Something has gone extremely wrong.',
+      life: 5000
+    })
   }
-  const { data } = await useAsyncQuery(query, variables)
-  const { edges } = data.value.search
-  repositories.value = edges.map((item) => item.repository)
 }
 </script>
 

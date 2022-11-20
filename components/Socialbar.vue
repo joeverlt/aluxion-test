@@ -1,6 +1,6 @@
 <template>
   <div class="socials-bar w-full py-3 flex align-items-center">
-    <h4 class="m-0">Sigueme en:</h4>
+    <h4 class="m-0">Follow me:</h4>
     <div class="social-icons ml-2">
       <a v-for="social in socials" :href="social.link" target="_blank">
         <i :class="social.className"></i>

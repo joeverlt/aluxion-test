@@ -15,8 +15,20 @@
         <Bottombar />
       </div>
     </div>
+
+    <Toast
+      position="top-right"
+      :breakpoints="{
+        '920px': { width: 'calc(100% - 30px)', right: '15px', left: '15px' }
+      }"
+    />
+    <BlockUI :blocked="blocked" :fullScreen="true"></BlockUI>
   </div>
 </template>
+
+<script setup>
+const blocked = useBlockUI()
+</script>
 
 <style lang="scss" scoped>
 @import '@/assets/scss/mixins';

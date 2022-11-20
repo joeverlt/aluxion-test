@@ -5,7 +5,7 @@
         v-model="sortKey"
         :options="sortOptions"
         optionLabel="label"
-        placeholder="Ordenar por ranking"
+        placeholder="Sort by rank"
         @change="onSortChange($event)"
       />
     </div>
@@ -18,8 +18,8 @@ const emit = defineEmits(['update:order', 'update:field'])
 
 const sortKey = ref()
 const sortOptions = [
-  { label: 'De mayor a menor', value: '!stargazerCount' },
-  { label: 'De menor a mayor', value: 'stargazerCount' }
+  { label: 'Hight to Low', value: '!stargazerCount' },
+  { label: 'Low to High', value: 'stargazerCount' }
 ]
 
 const onSortChange = (event) => {

@@ -14,6 +14,10 @@
         <DataviewHeader v-model:order="sortOrder" v-model:field="sortField" />
       </template>
 
+      <template #empty>
+        <div class="p-4">Please, select a topic and min of starts.</div>
+      </template>
+
       <template #list="slotProps">
         <ListItem :item="slotProps.data" />
       </template>
