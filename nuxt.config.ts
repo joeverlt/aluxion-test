@@ -21,7 +21,7 @@ export default defineNuxtConfig({
             httpLinkOptions: {
               headers: {
                 'content-type': 'application/json',
-                authorization: 'bearer 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'
+                authorization: 'bearer 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'
               }
             }
           }
