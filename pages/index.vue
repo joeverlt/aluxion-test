@@ -1,5 +1,5 @@
 <template>
-  <div class="p-0 shadow-2 p-card mt-4">
+  <div class="p-0 shadow-2 p-card mt-4 mb-6">
     <SearchForm />
 
     <DataView
