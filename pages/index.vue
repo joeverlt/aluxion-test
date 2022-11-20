@@ -22,7 +22,7 @@
 </template>
 
 <script setup>
-import Form from '~~/components/Form'
+import SearchForm from '~~/components/SearchForm'
 const repositories = useRepositories()
 const layout = ref('list')
 const sortOrder = ref()
